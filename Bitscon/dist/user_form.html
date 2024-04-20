@@ -2,22 +2,23 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>BITSCON 2024 | Attendance System</title>
-  
-  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>BITSCON 2024 | Attendance System</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-  <link rel="icon" type="image/png" href="../images/cnsclogo.png" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <link rel="icon" type="image/png" href="../images/cnsclogo.png" />
 
-  <link rel="stylesheet" href="../css/design.css" />
+    <link rel="stylesheet" href="../css/design.css" />
 
 
 </head>
@@ -26,83 +27,169 @@
 
     <section class="h-100 gradient-form" style="background-color: #eee;">
         <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-xl-10">
-              <div class="card rounded-3 text-black">
-                <div class="row g-0">
-                  <div class="col-lg-6">
-                    <div class="card-body p-md-5 mx-md-4">
-      
-                      <div class="text-center">
-                        <img src="../images/CNSC.png"
-                          style="width: 185px;" alt="logo">
-                        <h4 class="gradient-text mt-1 mb-5 pb-1"><b>BITSCON 2024 ATTENDANCE TRACKING FORM</b></h4>
-                      </div>
-      
-                      <form>
-                        <p>Please enter details for attendance:</p>
-      
-                        <div class="form-outline mb-4">
-                          <input type="text" id="firstname" name="firstname" class="form-control"
-                            placeholder="First Name" required/>
-                         </div>
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
 
-                        <div class="form-outline mb-4">
-                            <input type="text" id="midinitial" name="midinitial" class="form-control"
-                              placeholder="Middle Initial" />
+                                    <div class="text-center">
+                                        <img src="../images/CNSC.png" style="width: 185px;" alt="logo">
+                                        <h4 class="gradient-text mt-1 mb-5 pb-1"><b>BITSCON 2024 ATTENDANCE TRACKING
+                                                FORM</b></h4>
+                                    </div>
+
+                                    <form id="attendanceForm">
+                                        <p>Please enter details for attendance:</p>
+
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="firstname" name="firstname" class="form-control"
+                                                pattern="[A-Za-z]+" placeholder="First Name" required />
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="midinitial" name="midinitial" class="form-control"
+                                                pattern="[A-Za-z]" placeholder="Middle Initial" maxlength="1" />
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="lastname" name="lastname" class="form-control"
+                                                pattern="[A-Za-z]+" placeholder="Last Name" required />
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <select class="form-control" id="schoolInput" name="schoolInput" required>
+                                                <option value="">--- Select School Name ---</option>
+                                                <option value="Camarines Norte State College">Camarines Norte State
+                                                    College</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="form-outline mb-4">
+                                            <div class="input-group">
+                                                <span class="input-group-text">+63</span>
+                                                <input type="text" id="Phonenum" name="Phonenum" class="form-control"
+                                                    placeholder="Phone number" pattern="\d{10}"
+                                                    title="Please enter a 10-digit phone number" required />
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center pt-1 mb-5 pb-1">
+                                            <button class="button-19" type="button"
+                                                onclick="validateForm()">Submit</button>
+                                            <div id="error-message" class="text-danger mt-2"></div>
+                                            <div id="confirmation-message" class="text-green mt-2"></div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+
+                                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                    <h1 class="mb-8 text-center">Welcome to BITSCON 2024!</h1>
+                                    <img class="robot" src="../images/robot.png" alt="image" width="350" height="300">
+                                    <br>
+                                    <p style="text-align: justify;">Join us for an electrifying event packed with
+                                        excitement, unparalleled experiences, and a
+                                        wealth of knowledge on the latest innovations shaping our world. Immerse
+                                        yourself in inspiring talks,
+                                        engage with cutting-edge technologies, and connect with like-minded individuals
+                                        passionate about pushing boundaries and driving progress.
+                                        BITSCON 2024 promises to ignite your imagination, expand your horizons, and
+                                        leave you inspired to shape the future.</p>
+                                </div>
+
+                            </div>
                         </div>
-                        
-                        <div class="form-outline mb-4">
-                             <input type="text" id="lastname" name="lastname" class="form-control"
-                              placeholder="Last Name" required/>
-                        </div> 
-
-                       <div class="form-outline mb-4">
-                          <select class="form-control" id="dateInput" name="dateInput" required>
-                            <option>--- Select School Name ---</option>
-                            <option value="Camarines Norte State College">Camarines Norte State College</option>
-                          </select> 
-                        </div>
-
-
-                        <div class="form-outline mb-4">
-                          <div class="input-group">
-                              <span class="input-group-text">+63</span>
-                              <input type="text" id="Phonenum" name="Phonenum" class="form-control" placeholder="Phone number" pattern="\d{10}" title="Please enter a 10-digit phone number" required />
-                          </div>
-                        </div> 
-    
-                        <div class="text-center pt-1 mb-5 pb-1">
-                            <button class="button-19" role="button" id="submitBtn">Submit</button>
-                        </div>
-      
-      
-                      </form>
-      
                     </div>
-                  </div>
-                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-                    
-                    <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                      <h1 class="mb-8 text-center">Welcome to BITSCON 2024!</h1>
-                      <img class="robot"src="../images/robot.png" alt="image" width="350" height="300">
-                      <br>
-                      <p style="text-align: justify;">Join us for an electrifying event packed with excitement, unparalleled experiences, and a 
-                        wealth of knowledge on the latest innovations shaping our world. Immerse yourself in inspiring talks, 
-                        engage with cutting-edge technologies, and connect with like-minded individuals passionate about pushing boundaries and driving progress. 
-                        BITSCON 2024 promises to ignite your imagination, expand your horizons, and leave you inspired to shape the future.</p>
-                  </div>
-                  
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </section> 
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
- 
+    <script>
+        function validateForm() {
+            const form = document.getElementById('attendanceForm');
+            const firstName = form.elements['firstname'].value.trim().toUpperCase();
+            const middleInitial = form.elements['midinitial'].value.trim().toUpperCase();
+            const lastName = form.elements['lastname'].value.trim().toUpperCase();
+            const phoneNum = form.elements['Phonenum'].value.trim();
+            const school = form.elements['schoolInput'].value.trim().toUpperCase();
+
+            if (!/^[A-Za-z]+(?:\s[A-Za-z]+)*$/.test(firstName)) {
+                ErrorMessage('Please enter letters only for First Name.');
+                return;
+            }
+
+            if (!/^[A-Za-z]$/.test(middleInitial) && middleInitial.length > 0) {
+                ErrorMessage('Please enter a letter only for Middle Initial.');
+                return;
+            }
+
+            if (!/^[A-Za-z]+(?:\s[A-Za-z]+)*$/.test(lastName)) {
+                ErrorMessage('Please enter letters only for Last Name.');
+                return;
+            }
+
+            if (school.length == 0) {
+                ErrorMessage('Please select your school.');
+                return;
+            }
+
+            if (!/^[0-9]{10}$/.test(phoneNum)) {
+                ErrorMessage('Please enter a 10-digit number only for Phone Number.');
+                return;
+            }
+
+            submitAttendance(firstName, middleInitial, lastName, phoneNum, school);
+        }
+
+        async function submitAttendance(firstName, middleInitial, lastName, phoneNum, school) {
+
+            const requestBody = {
+                "fname": firstName,
+                "minitial": middleInitial,
+                "lname": lastName,
+                "number": phoneNum,
+                "school": school
+            };
+
+            try {
+                const response = await fetch("http://localhost:8090/api/public/attendance", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+                if (response.status === 409) {
+                    ErrorMessage('You already submitted your attendance!');
+                    return;
+                } else if (response.status === 400) {
+                    ErrorMessage('Please check your data if it is correct.');
+                    return;
+                } else if (response.status === 200) {
+                    ConfirmationMessage("Submitted!");
+                }
+
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+        function ErrorMessage(Message) {
+            document.getElementById('error-message').innerText = Message;
+            document.getElementById('confirmation-message').innerText = null;
+        }
+        function ConfirmationMessage(Message) {
+            document.getElementById('confirmation-message').innerText = Message;
+            document.getElementById('error-message').innerText = null;
+        }
+    </script>
 </body>
 
 </html>

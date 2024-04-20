@@ -26,6 +26,10 @@
     text-align: center;
 }
 
+.text-green {
+  color: green;
+}
+
 
 .button-19 {
   appearance: button;
