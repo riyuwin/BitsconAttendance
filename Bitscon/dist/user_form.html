@@ -145,10 +145,10 @@
                 return;
             }
 
-            submitAttendance(firstName, middleInitial, lastName, phoneNum, school);
+            submitAttendance(firstName, middleInitial, lastName, phoneNum, school, form);
         }
 
-        async function submitAttendance(firstName, middleInitial, lastName, phoneNum, school) {
+        async function submitAttendance(firstName, middleInitial, lastName, phoneNum, school, form) {
 
             const requestBody = {
                 "fname": firstName,
@@ -168,12 +168,12 @@
                 });
                 if (response.status === 409) {
                     ErrorMessage('You already submitted your attendance!');
-                    return;
+                    form.reset();
                 } else if (response.status === 400) {
                     ErrorMessage('Please check your data if it is correct.');
-                    return;
                 } else if (response.status === 200) {
                     ConfirmationMessage("Submitted!");
+                    form.reset();
                 }
 
             } catch (error) {
