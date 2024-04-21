@@ -4,7 +4,7 @@
 }
 
 
-.table-custom th,
+/* .table-custom th,
 .table-custom td {
     text-align: center;
 }
@@ -17,4 +17,29 @@
 .table-custom th:nth-child(2),
 .table-custom td:nth-child(2) {
     width: 5%;
+} */
+
+.table-custom th,
+.table-custom td {
+    text-align: center;
+}
+
+.table th:nth-child(1) {
+    width: 10%;
+}
+
+.table th:nth-child(2) {
+    width: 20%;
+}
+
+.table th:nth-child(3) {
+    width: 15%;
+}
+
+.table th:nth-child(4) {
+    width: 25%;
+}
+
+.table th:nth-child(5) {
+    width: 10%;
 }
