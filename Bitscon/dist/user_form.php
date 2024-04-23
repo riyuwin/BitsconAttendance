@@ -40,18 +40,13 @@
                                                 FORM</b></h4>
                                     </div>
 
-                                    <form id="attendanceForm">
+                                    <form action="../config/save_user_form.php" method="POST">
                                         <p>Please enter details for attendance:</p>
 
                                         <div class="form-outline mb-4">
                                             <input type="text" id="firstname" name="firstname" class="form-control"
                                                 pattern="[A-Za-z]+" placeholder="First Name" required />
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="midinitial" name="midinitial" class="form-control"
-                                                pattern="[A-Za-z]" placeholder="Middle Initial" maxlength="1" />
-                                        </div>
+                                        </div> 
 
                                         <div class="form-outline mb-4">
                                             <input type="text" id="lastname" name="lastname" class="form-control"
@@ -77,11 +72,19 @@
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
+                                            <button class="button-19" name="submit" type="submit">Submit</button>
+                                            <div id="error-message" class="text-danger mt-2"></div>
+                                            <div id="confirmation-message" class="text-green mt-2"></div>
+                                        </div>
+ 
+
+
+                                        <!-- <div class="text-center pt-1 mb-5 pb-1">
                                             <button class="button-19" type="button"
                                                 onclick="validateForm()">Submit</button>
                                             <div id="error-message" class="text-danger mt-2"></div>
                                             <div id="confirmation-message" class="text-green mt-2"></div>
-                                        </div>
+                                        </div> -->
                                     </form>
 
                                 </div>
@@ -110,10 +113,9 @@
         </div>
     </section>
 
-    <script type="module" src="../js/db_connection.js"></script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function validateForm() {
             const form = document.getElementById('attendanceForm');
@@ -192,7 +194,7 @@
             document.getElementById('confirmation-message').innerText = Message;
             document.getElementById('error-message').innerText = null;
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
