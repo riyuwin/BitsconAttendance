@@ -45,9 +45,9 @@
 
                                         <div class="form-outline mb-4">
                                             <input type="text" id="firstname" name="firstname" class="form-control"
-                                                pattern="[A-Za-z]+" placeholder="First Name" required />
-                                        </div> 
-
+                                                pattern="^[A-Za-z]+(?:\s+[A-Za-z]+)?$" placeholder="First Name" required />
+                                        </div>
+                                        
                                         <div class="form-outline mb-4">
                                             <input type="text" id="lastname" name="lastname" class="form-control"
                                                 pattern="[A-Za-z]+" placeholder="Last Name" required />
@@ -56,9 +56,10 @@
                                         <div class="form-outline mb-4">
                                             <select class="form-control" id="schoolInput" name="schoolInput" required>
                                                 <option value="">--- Select School Name ---</option>
-                                                <option value="Camarines Norte State College">Camarines Norte State
-                                                    College</option>
-                                            </select>
+                                                <option value="Camarines Norte State College">Camarines Norte State College</option>
+                                            <option value="Mabini Colleges">Mabini Colleges</option>
+                                            <option value="Ateneo De Naga">Ateneo De Naga</option>
+                                                                    </select>
                                         </div>
 
 
