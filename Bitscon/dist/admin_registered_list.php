@@ -20,10 +20,6 @@
 </head>
 
 <body>
-
-
-
-
     <!-- Header -->
     <div class="container-fluid header_tab">
         <div class="row">
@@ -40,8 +36,8 @@
                         Camarines Norte State College<br />April 23-26, 2024
                     </p>
                 </span>
-            </div>           
-            
+            </div>
+
             <div class="col-md-3 text-center">
                 <img src="../images/codite.png" width="110px" height="100px" />
             </div>
@@ -58,17 +54,20 @@
         </button> -->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" href="admin_registered_list.php">Registered List<span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="admin_attendance_list.php">Attendee List</a> 
+                <a class="nav-link active" href="admin_registered_list.php">Registered List<span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-link" href="admin_attendance_list.php">Attendee List</a>
+
+                <p class="nav-link" id="logout">Log Out</p>
             </div>
         </div>
     </nav>
 
-    
+
 
     <br />
 
-    
+
 
     <div class="container text-center">
         <h3>Registered Attendee List</h3>
@@ -79,8 +78,8 @@
     <?php include '../config/retrieve_registered.php'; ?>
 
     <!-- Table -->
-    <div class="container"> 
-        <div class="row"> 
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
                 <h5>Upload File:</h5>
             </div>
@@ -88,15 +87,15 @@
 
             <div class="col-md-6">
                 <label for="excelUpload">Update Registered List:</label>
-                <input  id="excelUpload" type="file" name="excelUpload" /> 
+                <input id="excelUpload" type="file" name="excelUpload" />
             </div>
 
-            <div class="col-md-6"> 
+            <div class="col-md-6">
                 <button class="btn btn-primary" id="uploadButton">Upload File</button>
             </div>
         </div>
         <hr>
-    </div> 
+    </div>
     <!-- Table -->
     <div class="container">
         <div class="row">
@@ -105,15 +104,16 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="schoolInput">Search:</label> 
-                    <input type="text" id="searchInput" name="searchInput" class="form-control" pattern="[A-Za-z ]+" placeholder="Search" required />
+                    <label for="schoolInput">Search:</label>
+                    <input type="text" id="searchInput" name="searchInput" class="form-control" pattern="[A-Za-z ]+"
+                        placeholder="Search" required />
 
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="schoolInput">School:</label>            
+                    <label for="schoolInput">School:</label>
                     <select class="form-control" id="schoolInput" name="schoolInput" onchange="filterTable()">
                         <option value="SELECT_ALL">All</option>
                         <option value="Camarines Norte State College">Camarines Norte State College</option>
@@ -122,17 +122,17 @@
                     </select>
 
                 </div>
-            </div> 
-            
-            
             </div>
 
+
         </div>
+
+    </div>
     </div>
 
-    
+
     <br />
- 
+
 
     <div class="container container_menu">
         <div class="table-responsive-lg">
@@ -155,7 +155,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
     <script>
         function filterTable() {
             var school = document.getElementById('schoolInput').value;
@@ -173,22 +172,41 @@
         }
     </script>
 
+    <script>
+        $(document).ready(function () {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Define the request parameters (method, URL, async)
+            xhr.open('GET', '../config/checkSession.php', true);
+
+            // Define the callback function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText); // Log the response from the server
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        });
+    </script>
 
     <script>
-    $(document).ready(function() {
-        // Function to handle live filtering based on search input
-        $('#searchInput').on('input', function() {
-            var searchText = $(this).val().toLowerCase(); // Get the search text and convert to lowercase for case-insensitive search
-            $('#attendanceTable tbody tr').each(function() {
-                var rowData = $(this).find('td').text().toLowerCase(); // Get the text content of all cells in this row
-                if (rowData.includes(searchText)) { // Check if the row data contains the search text
-                    $(this).show(); // Show the row if it matches the search
-                } else {
-                    $(this).hide(); // Hide the row if it doesn't match the search
-                }
+        $(document).ready(function () {
+            // Function to handle live filtering based on search input
+            $('#searchInput').on('input', function () {
+                var searchText = $(this).val().toLowerCase(); // Get the search text and convert to lowercase for case-insensitive search
+                $('#attendanceTable tbody tr').each(function () {
+                    var rowData = $(this).find('td').text().toLowerCase(); // Get the text content of all cells in this row
+                    if (rowData.includes(searchText)) { // Check if the row data contains the search text
+                        $(this).show(); // Show the row if it matches the search
+                    } else {
+                        $(this).hide(); // Hide the row if it doesn't match the search
+                    }
+                });
             });
         });
-    });
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
@@ -291,6 +309,28 @@
 
             // Send the request
             xhr.send();
+        }
+    </script>
+    <script>
+        document.getElementById("logout").addEventListener("click", handleLogout);
+        function handleLogout() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Define the request parameters (method, URL, async)
+            xhr.open('GET', '../config/logout.php', true);
+
+            // Define the callback function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText); // Log the response from the server
+                }
+            };
+
+            // Send the request
+            xhr.send();
+
+            window.location.href = 'admin_login.php';
         }
     </script>
 </body>
