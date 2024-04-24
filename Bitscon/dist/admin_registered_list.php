@@ -69,6 +69,7 @@
             <div class="col-md-4">
                 <label for="excelUpload">Update Registered List:</label>
                 <input class="form-control form-control-sm" id="excelUpload" type="file" name="excelUpload" />
+                <!--CREATE AN UPLOAD BUTTON THAT CALLS THE FUNCTION NAMED UploadFile() FROM PHP-->
             </div>
         </div>
         <hr>
@@ -77,8 +78,7 @@
 
     <!-- Call out the retrieve attendee -->
     <?php include '../config/retrieve_registered.php'; ?>
-    <?php include '../config/excel_to_database.php'; ?>
-    
+
     <div class="container container_menu">
         <div class="table-responsive-lg">
             <table class="table table-hover  table-custom" id="attendanceTable">
