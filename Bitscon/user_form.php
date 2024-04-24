@@ -46,12 +46,12 @@
 
                                             <div class="form-outline mb-4">
                                                 <input type="text" id="firstname" name="firstname" class="form-control"
-                                                    pattern="^[A-Za-z]+(?:\s+[A-Za-z]+)?$" placeholder="First Name" required />
+                                                    pattern="^[A-Za-z]+(?:[\s-]+[A-Za-z]+)*$" placeholder="First Name" required />
                                             </div>
 
                                             <div class="form-outline mb-4">
                                                 <input type="text" id="lastname" name="lastname" class="form-control"
-                                                pattern="^[A-Za-z]+(?:\s+[A-Za-z]+)?$" placeholder="Last Name" required />
+                                                pattern="^[A-Za-z]+(?:[\s-]+[A-Za-z]+)*$" placeholder="Last Name" required />
                                             </div>
 
                                             <div class="form-outline mb-4">
