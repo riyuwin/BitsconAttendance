@@ -87,6 +87,7 @@
                 <div class="form-group">
                     <label for="schoolInput">School:</label>
                     <div class="form-outline mb-4">
+                        
                     <select class="form-control" id="schoolInput" name="schoolInput" onchange="toggleOtherInput()"required>
                             <option value="">--- Select School Name ---</option>
                             <option value="ACLC COLLEGE SORSOGON">ACLC College Sorsogon</option>
