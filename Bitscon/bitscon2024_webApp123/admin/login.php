@@ -33,7 +33,7 @@
             <div class="row justify-content-sm-center h-100">
                 <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
                     <div class="text-center my-5">
-                        <img src="../images/threelogos.png" alt="logo" width="350" height="100">
+                        <img src="../../images/threelogos.png" alt="logo" width="350" height="100">
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
@@ -79,7 +79,7 @@
             var xhr = new XMLHttpRequest();
 
             // Define the request parameters (method, URL, async)
-            xhr.open('POST', '../config/login.php', true);
+            xhr.open('POST', '../../config/login.php', true);
 
             // Set the request header if necessary (e.g., content-type)
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -88,7 +88,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     if (xhr.responseText === "200:OK") {
-                        window.location.href = 'admin_attendance_list.php';
+                        window.location.href = 'attendance.php';
                     } else if (xhr.responseText === "PASSWORD_INCORRECT") {
                         ErrorMessage('password', 'Incorrect Password!');
                         ErrorMessage('username', null);

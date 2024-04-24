@@ -17,9 +17,9 @@
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-    <link rel="icon" type="image/png" href="../images/cnsclogo.png" />
+    <link rel="icon" type="image/png" href="../../../images/cnsclogo.png" />
 
-    <link rel="stylesheet" href="../css/design.css" />
+    <link rel="stylesheet" href="../../../css/design.css" />
 
 
 </head>
@@ -37,12 +37,12 @@
                                 <div class="card-body p-md-5 mx-md-4">
 
                                     <div class="text-center">
-                                        <img src="../images/threelogos.png" style="width: 300px; padding-bottom: 30px;" alt="logo">
+                                        <img src="../../../images/threelogos.png" style="width: 300px; padding-bottom: 30px;" alt="logo">
                                         <h4 class="gradient-text mt-1 mb-5 pb-1" style="font-family: Lexend;"><b>BITSCON 2024 ATTENDANCE TRACKING
                                                 FORM</b></h4>
                                                 </div>
 
-                                    <form action="../config/update_record.php" method="POST" id="attendanceForm">
+                                    <form action="../../../config/update_record.php" method="POST" id="attendanceForm">
                                         <p>Please update attendee record:</p>
 
                                         
@@ -92,7 +92,7 @@
 
                                 <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                                     <h1 class="mb-8 text-center" style="font-family: Lexend;">WELCOME TO BITSCON 2024!</h1>
-                                    <img class="logo" src="../images/codite.png" alt="image" width="400" height="320">
+                                    <img class="logo" src="../../../images/codite.png" alt="image" width="400" height="320">
                                  
                                     <p style="text-align: justify; font-family: Lexend;">Join us for an electrifying event packed with
                                         excitement, unparalleled experiences, and a

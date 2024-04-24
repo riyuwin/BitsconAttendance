@@ -12,12 +12,12 @@
    
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="icon" type="image/png" href="../images/cnsclogo.png" />
+        <link rel="icon" type="image/png" href="images/cnsclogo.png" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
     
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
      
-        <link href="../css/landingpage.css" rel="stylesheet" />
+        <link href="css/landingpage.css" rel="stylesheet" />
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -43,7 +43,7 @@
                             <div class="d-flex justify-content-center mt-5 mt-xxl-0">
                                 <div class="profile bg-gradient-primary-to-secondary">
 
-                                    <img class="profile-img" src="../images/codite.png" alt="..." />
+                                    <img class="profile-img" src="images/codite.png" alt="..." />
                                     <div class="dots-1">
               
                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">

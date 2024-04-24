@@ -29,7 +29,7 @@ if (mysqli_num_rows($result) > 0) {
         $tableRows .= "<td>$school</td>";
         // Add a button with onclick event to trigger a JavaScript function
         /* $tableRows .= "<td><button class='btn btn-primary btn-sm' onclick='handleButtonClick($attendeeId)'><i class='fas fa-edit'></i> Edit</button></td>"; */
-        $tableRows .= "<td><a href='update_record.php?id=$attendeeId&fname=$fname&lname=$lname&mobile=$mobileNumber&school=$school' class='btn btn-primary btn-sm'>Edit</a></td>";
+        $tableRows .= "<td><a href='update?id=$attendeeId&fname=$fname&lname=$lname&mobile=$mobileNumber&school=$school' class='btn btn-primary btn-sm'>Edit</a></td>";
         $tableRows .= "</tr>";
     }
 } else {

@@ -19,9 +19,9 @@
         integrity="sha512-3w3c2M1GyvwhTWeEdz6pHgmsavfVzca6xWoT/ZVnDXeQUq2KKZKM+d+4Uws/zlYFm3nILHRaEtbUJwXbpYpWhQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
 
-    <link rel="icon" type="image/png" href="../images/cnsclogo.png" />
+    <link rel="icon" type="image/png" href="../../images/cnsclogo.png" />
     <title>Bitscon - Admin</title>
 </head>
 
@@ -43,7 +43,7 @@
     <div class="container-fluid header_tab">
         <div class="row">
             <div class="col-md-3 text-center">
-                <img src="../images/cnsclogo.png" width="90px" height="85px" />
+                <img src="../../images/cnsclogo.png" width="90px" height="85px" />
             </div>
 
             <div class="col-md-6 text-center">
@@ -58,7 +58,7 @@
             </div>
 
             <div class="col-md-3 text-center">
-                <img src="../images/cnsclogo.png" width="90px" height="85px" />
+                <img src="../../images/cnsclogo.png" width="90px" height="85px" />
             </div>
         </div>
     </div>
@@ -70,20 +70,10 @@
         </button> -->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" href="admin_registered_list.php">Registered List<span
+                <a class="nav-link" href="registered">Registered List<span
                         class="sr-only">(current)</span></a>
-                <a class="nav-link active" href="admin_attendance_list.php">Attendee List</a>
-                
-                <?php if(isset($_SESSION['username'])) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../config/logout.php">Logout</a>
-                    </li> 
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin_login.php">Login</a>
-                    </li>
-                <?php } ?>
 
+                <a class="nav-link active" href="attendance">Attendee List</a>
             </div>
         </div>
     </nav>
@@ -112,7 +102,7 @@
             </div>
 
             <!-- Call out the retrieve attendee -->
-            <?php include '../config/retrieve_attendance.php'; ?>
+            <?php include '../../config/retrieve_attendance.php'; ?>
 
             <div class="col-md-4">
                 <div class="form-group">
