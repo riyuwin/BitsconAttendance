@@ -7,9 +7,9 @@ $conn = OpenCon();
 $tableRows = '';
 
 // Fetch data from the database
-$query = "SELECT a.attendee_id, CONCAT(a.fname, ' ', a.lname) AS name, a.number AS mobileNumber, a.school, t.date
+$query = "SELECT a.attendee_id, CONCAT(a.fname, ' ', a.lname) AS name, a.number, a.school, t.date
           FROM attendee a
-          LEFT JOIN attendance t ON a.attendee_id = t.attendee_id";
+          RIGHT JOIN attendance t ON a.attendee_id = t.attendee_id";
 
 $result = mysqli_query($conn, $query);
 
@@ -19,8 +19,11 @@ if (mysqli_num_rows($result) > 0) {
         // Extract data from each row
         $attendeeId = $row['attendee_id'];
         $name = $row['name'];
-        $mobileNumber = "+63" . $row['mobileNumber'];
-        $school = $row['school']; 
+        $mobileNumber = "null";
+        if ($row['number'] !== "null") {
+            $mobileNumber = "+63" . $row['number'];
+        }
+        $school = $row['school'];
         $date = $row['date'];
 
 
@@ -30,7 +33,7 @@ if (mysqli_num_rows($result) > 0) {
         $tableRows .= "<td>$name</td>";
         $tableRows .= "<td>$mobileNumber</td>";
         $tableRows .= "<td>$school</td>";
-        $tableRows .= "<td>$date</td>"; 
+        $tableRows .= "<td>$date</td>";
         $tableRows .= "</tr>";
     }
 } else {
@@ -50,7 +53,7 @@ $options = '';
 if (mysqli_num_rows($result) > 0) {
     // Append the default option "All" to the $options variable
     $options .= "<option value='SELECT_ALL'>All</option>";
-    
+
     while ($row = mysqli_fetch_assoc($result)) {
         // Extract the date from each row
         $date = $row['date'];

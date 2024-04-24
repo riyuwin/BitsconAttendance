@@ -103,7 +103,7 @@
 
     <div class="container container_menu">
         <div class="table-responsive-lg">
-            <table class="table table-hover  table-custom" id="attendanceTable">
+            <table class="table table-hover table-custom" id="attendanceTable">
                 <thead>
                     <tr>
                         <th scope="col">Attendee ID</th>
@@ -137,6 +137,9 @@
                     row.style.display = 'none';
                 }
             });
+        }
+        function updateRow(attendeeId){
+            console.log("Editing Attende ID: "+attendeeId);
         }
     </script>
 
