@@ -132,7 +132,63 @@
 
     
     <br />
- 
+
+
+    <!-- Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Edit Attendee</h5><br>
+
+                    <!-- Update the form action and method -->
+                    <form method="POST">
+                    
+                        <label for="otherSchool">ID:</label>
+                        <input type="number" id="attendeeID" name="attendeeID" class="form-control"  placeholder="Attendee ID" readonly/><br>      
+
+                        <label for="otherSchool">First Name:</label>
+                        <input type="text" id="firstname" name="firstname" class="form-control"
+                        pattern="^[A-Za-z]+(?:\s+[A-Za-z]+)?$" placeholder="First Name" required /><br>  
+                        
+                        <label for="otherSchool">Last Name:</label>
+                            <input type="text" id="lastname" name="lastname" class="form-control"
+                            pattern="^[A-Za-z]+(?:\s+[A-Za-z]+)?$" placeholder="Last Name" required /><br>
+
+                            
+                            <label for="otherSchool">School:</label>
+                            <input type="text" id="schoolInputModal" name="schoolInputModal" class="form-control" placeholder="School" required /><br>
+
+                            
+                            <label for="otherSchool">Phone Number:</label>
+                            <div class="form-outline mb-4">
+                                <div class="input-group">
+                                    <span class="input-group-text">+63</span>
+                                    <input type="text" id="Phonenum" name="Phonenum" class="form-control"
+                                        placeholder="Phone number" pattern="\d{10}"
+                                        title="Please enter a 10-digit phone number" required />
+                                </div>
+                            </div>
+                            
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!-- Add name attribute to the button -->
+                            <button type="button" id="saveChanges" name="saveChanges" class="btn btn-primary">Save changes</button>
+                        </div>
+
+                </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container container_menu">
         <div class="table-responsive-lg">
@@ -293,6 +349,10 @@
             xhr.send();
         }
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 </body>
 
 </html>
