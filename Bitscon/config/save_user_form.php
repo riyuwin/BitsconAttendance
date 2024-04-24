@@ -61,43 +61,6 @@ if (isset($_POST['submit'])) {
                 </script>";
 
                 exit();
-            } else if ($school !== "Camarines Norte State College") {
-                $error = "Attendee is not registered. Adding to unregistered list.";
-
-                // Fetch the first row from the result
-                $row = insertDataIntoDatabase($conn, $fname, $lname, $school, $number);
-
-                // Get the value of attendee_id from the fetched row
-                $attendee_id = $row['attendee_id'];
-
-                // Check if the attendee has already attended on the current date
-                $check_attendance_query = "SELECT * FROM attendance WHERE attendee_id = '$attendee_id' AND date='$currentDate'";
-                $check_attendance_result = mysqli_query($conn, $check_attendance_query);
-
-                if (mysqli_num_rows($check_attendance_result) > 0) {
-                    $error = "Attendee already attended today.";
-                } else {
-                    // Insert the attendee's attendance for the current date
-                    $insert_attendance_query = "INSERT INTO attendance (attendee_id, date) VALUES ('$attendee_id', '$currentDate')";
-                    $insert_attendance_result = mysqli_query($conn, $insert_attendance_query);
-                    if ($insert_attendance_result) {
-                        // Attendance inserted successfully
-                        $success = "Attendance recorded successfully.";
-                    } else {
-                        // Failed to insert attendance
-                        $error = "Failed to record attendance.";
-                    }
-                }
-
-                // Display appropriate message and redirect
-                echo "<script>alert('" . ($error ?? $success ?? "Unknown error") . "')</script>";
-                echo "<script>
-                    setTimeout(function() {
-                        window.location.href = '../user_form.php';
-                    }, 1000); // Redirect after 1000 milliseconds (1 second)
-                </script>";
-
-                exit();
             } else {
                 $error = "Attendee is not registered.";
 

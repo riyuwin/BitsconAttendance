@@ -34,7 +34,7 @@
                                 <div class="fs-3 fw-light" style="color: #445D62;">VENUE: CNSC COVERED COURT</div>
                                 <br><br>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
-                                    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="user_form.php">ATTEND NOW</a>
+                                    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="user_form">ATTEND NOW</a>
                                 </div>
                             </div>
                         </div>
