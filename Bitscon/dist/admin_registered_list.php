@@ -46,6 +46,11 @@
     </div>
     <br />
 
+    <div class="container text-center">
+        <h3>Registered Attendee List</h3>
+        <hr>
+    </div>
+    
     <!-- Table -->
     <div class="container">
         <div class="row">
@@ -85,11 +90,14 @@
           </a> -->
             </div>
         </div>
+        <hr>
     </div>
     <br />
 
+    <!-- Call out the retrieve attendee -->
+    <?php include '../config/retrieve_registered.php'; ?>
+    
     <div class="container container_menu">
-
         <div class="table-responsive-lg">
             <table class="table table-hover  table-custom" id="attendanceTable">
                 <thead>
@@ -97,18 +105,19 @@
                         <th scope="col">Attendee ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Mobile Number</th>
-                        <th scope="col">School</th>
-                        <th scope="col">Date</th>
+                        <th scope="col">School</th> 
                     </tr>
                 </thead>
-                <tbody>  
-                    <!--This will be populated dynamically-->
+                <tbody>
+                    <?php echo $tableRows; ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
@@ -251,7 +260,7 @@
         // Call the function to populate initial table data when the page loads
         document.addEventListener('DOMContentLoaded', populateTable);
         document.addEventListener('DOMContentLoaded', populateDateOptions);
-    </script>
+    </script> -->
 </body>
 
 </html>

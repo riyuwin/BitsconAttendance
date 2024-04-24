@@ -24,9 +24,10 @@
 
 </head>
 
+
 <body>
 
-    <section class="h-100 gradient-form" style="background-color: #eee;">
+<section class="h-100 gradient-form" style="background-color: #eee;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
@@ -102,19 +103,25 @@
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function validateForm() {
             const form = document.getElementById('attendanceForm');
             const firstName = form.elements['firstname'].value.trim().toUpperCase();
+            const middleInitial = form.elements['midinitial'].value.trim().toUpperCase();
             const lastName = form.elements['lastname'].value.trim().toUpperCase();
             const phoneNum = form.elements['Phonenum'].value.trim();
             const school = form.elements['schoolInput'].value.trim().toUpperCase();
 
             if (!/^[A-Za-z]+(?:\s[A-Za-z]+)*$/.test(firstName)) {
                 ErrorMessage('Please enter letters only for First Name.');
+                return;
+            }
+
+            if (!/^[A-Za-z]$/.test(middleInitial) && middleInitial.length > 0) {
+                ErrorMessage('Please enter a letter only for Middle Initial.');
                 return;
             }
 
@@ -133,12 +140,14 @@
                 return;
             }
 
-            submitAttendance(firstName, lastName, phoneNum, school, form);
+            submitAttendance(firstName, middleInitial, lastName, phoneNum, school, form);
         }
 
-        async function submitAttendance(firstName, lastName, phoneNum, school, form) {
+        async function submitAttendance(firstName, middleInitial, lastName, phoneNum, school, form) {
+
             const requestBody = {
                 "fname": firstName,
+                "minitial": middleInitial,
                 "lname": lastName,
                 "number": phoneNum,
                 "school": school
@@ -161,8 +170,6 @@
                     ConfirmationMessage("Submitted!");
                     form.reset();
                 }
-                const data = await response.json();
-                SetUserCookies(data.attendeeID);
 
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
@@ -173,76 +180,11 @@
             document.getElementById('error-message').innerText = Message;
             document.getElementById('confirmation-message').innerText = null;
         }
-
         function ConfirmationMessage(Message) {
             document.getElementById('confirmation-message').innerText = Message;
             document.getElementById('error-message').innerText = null;
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: Message,
-                showConfirmButton: false,
-                timer: 1500
-            });
         }
-
-        function SetUserCookies(value) {
-            console.log("Setting user ID: " + value);
-            localStorage.setItem("userID", String(value));
-            Cookies.set("userID", String(value), { expires: 7 });
-            console.log("User ID saved.");
-            console.log(ReadUserCookies());
-        }
-
-        function ReadUserCookies() {
-            //return Cookies.get('userID');
-            return localStorage.getItem("userID");
-        }
-
-        async function CheckForUser() {
-            console.log("User Cookie Test #1: " + ReadUserCookies());
-            if (ReadUserCookies()) {
-                try {
-                    const userData = await fetch("http://localhost:8090/api/public/attendees/" + ReadUserCookies(), {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    });
-
-                    console.log(await userData.json());
-
-                    const requestBody = {
-                        "id": parseInt(ReadUserCookies()),
-                        "code": "BITSCON_2024"
-                    }
-                    console.log("User Cookie Test #2: " + ReadUserCookies());
-
-                    const response = await fetch("http://localhost:8090/api/public/attendance/auto", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: requestBody
-                    });
-
-                    if (response.status === 409) {
-                        ErrorMessage('You already submitted your attendance!');
-                        form.reset();
-                    } else if (response.status === 200) {
-                        ConfirmationMessage("Submitted!");
-                        form.reset();
-                    }
-
-
-                } catch (error) {
-                    console.error('There was a problem with the fetch operation:', error);
-                }
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', CheckForUser);
-    </script>
+    </script> -->
 </body>
 
 </html>
