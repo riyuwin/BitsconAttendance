@@ -44,6 +44,21 @@
             </div>
         </div>
     </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-light custom-bg-navbar">
+        <!-- <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> -->
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-link" href="admin_registered_list.php">Registered List<span class="sr-only">(current)</span></a>
+            <a class="nav-link active" href="admin_attendance_list.php">Attendee List</a> 
+            </div>
+        </div>
+    </nav>
+
+
     <br />
 
     <div class="container text-center">
@@ -109,6 +124,7 @@
         function filterTable() {
             var school = document.getElementById('schoolInput').value;
             var date = document.getElementById('dateInput').value;
+
             var rows = document.querySelectorAll('#attendanceTable tbody tr');
 
             rows.forEach(row => {

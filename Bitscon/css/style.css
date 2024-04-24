@@ -4,6 +4,15 @@
 }
 
 
+
+.custom-bg-navbar {
+    /* background-color: #dbdbdb69 !important; */
+    background-color: #96929269;
+    /* Use !important to ensure it overrides other styles */
+}
+
+
+
 /* .table-custom th,
 .table-custom td {
     text-align: center;
