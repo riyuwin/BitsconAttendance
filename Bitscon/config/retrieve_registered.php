@@ -1,9 +1,5 @@
 <?php
 
-// Include the PhpSpreadsheet library
-require 'vendor/autoload.php';
-use PhpOffice\PhpSpreadsheet\IOFactory;
-
 include 'db_connection.php';
 
 $conn = OpenCon();
@@ -21,7 +17,10 @@ if (mysqli_num_rows($result) > 0) {
         // Extract data from each row
         $attendeeId = $row['attendee_id'];
         $name = $row['fname'] . ' ' . $row['lname'];
-        $mobileNumber = "+63" . $row['number'];
+        $mobileNumber = "null";
+        if ($row['number'] !== "null") {
+            $mobileNumber = "+63" . $row['number'];
+        }
         $school = $row['school'];
         /* $date = $row['date']; */
 
@@ -31,7 +30,6 @@ if (mysqli_num_rows($result) > 0) {
         $tableRows .= "<td>$name</td>";
         $tableRows .= "<td>$mobileNumber</td>";
         $tableRows .= "<td>$school</td>";
-        /* $tableRows .= "<td>$date</td>"; */
         $tableRows .= "</tr>";
     }
 } else {
