@@ -30,10 +30,9 @@ if ($ADMIN_USERNAME === $username) {
 ?>
 
 
-<?php
-include 'db_connection.php';
+<?php 
 
-session_start(); // Start session at the beginning
+session_start();
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -42,26 +41,21 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$conn = OpenCon();
-
 if(isset($_POST['submit'])){
-    $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if ($email == $_ENV["ADMIN_USERNAME"] && $password == $_ENV["ADMIN_PASSWORD"]){
-        $_SESSION['username'] = $email; 
-        $_SESSION['password'] = $password; 
-        header("location:../dist/admin_registered_list.php");
-        exit(); // Exit after redirect
+    if ($username == $_ENV["ADMIN_USERNAME"] && $password == $_ENV["ADMIN_PASSWORD"]){
 
+        $_SESSION['username'] = $username; 
+        $_SESSION['password'] = $password;  // Store hashed password in session
+        header("location:../bitscon2024_webApp123/admin/attendance.php");
+        exit(); 
     } else { 
-        // If user is not found
         $_SESSION['error'] = "User not found";
-    }
-
-    // Redirect back to the login form
-    header("location:../dist/admin_login.php");
-    exit();
- 
+        echo "User not found";
+        header("location:../bitscon2024_webApp123/admin/login.php");
+        exit(); 
+    } 
 }
 ?>

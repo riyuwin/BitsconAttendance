@@ -38,7 +38,7 @@
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4">Admin Login</h1>
-                            <form action="../config/login.php" method="POST">
+                            <form action="../../config/login.php" method="POST">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted">Username</label>
                                     <input id="username" type="text" class="form-control" name="username" value=""

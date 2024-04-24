@@ -22,11 +22,15 @@
 <body>
     <?php
     session_start();
-    if (!isset($_SESSION['loggedin'])) {
-        header('Location: admin_login.php');
+
+    if(!isset($_SESSION['username'])) {
+        //header('Location: admin_login.php');
+        header("location: ../login.php");
         exit;
     }
     ?>
+
+    
     <!-- Header -->
     <div class="container-fluid header_tab">
         <div class="row">
@@ -61,9 +65,17 @@
         </button> -->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" href="registered.php">Registered List<span
+                
+                <a class="nav-link active" href="index.php">Registered List<span
                         class="sr-only">(current)</span></a>
-                <a class="nav-link" href="attendance.php">Attendee List</a>
+
+                <a class="nav-link" href="../attendance.php">Attendee List</a>
+
+
+                <?php if(isset($_SESSION['username'])) { ?>
+                    <a class="nav-link" href="../../../config/logout.php">Logout</a>
+                <?php } ?>
+
             </div>
         </div>
     </nav>
@@ -119,13 +131,35 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="schoolInput">School:</label>
-                    <select class="form-control" id="schoolInput" name="schoolInput" onchange="filterTable()">
-                        <option value="SELECT_ALL">All</option>
-                        <option value="Camarines Norte State College">Camarines Norte State College</option>
-                        <option value="Mabini Colleges">Mabini Colleges</option>
-                        <option value="Ateneo De Naga">Ateneo De Naga</option>
-                    </select>
-
+                    <div class="form-outline mb-4">
+                        <select class="form-control" id="schoolInput" name="schoolInput" onchange="toggleOtherInput()"required>
+                            <option value="">--- Select School Name ---</option>
+                            <option value="ACLC COLLEGE SORSOGON">ACLC College Sorsogon</option>
+                            <option value="ACLC COLLEGE OF IRIGA, INC.">ACLC College Of Iriga, Inc.</option>
+                            <option value="AEMILIANUM COLLEGE INC.">Aemilianum College Inc.</option>
+                            <option value="ATENEO DE NAGA UNIVERSITY">Ateneo De Naga University</option>
+                            <option value="BAAO COMMUNITY COLLEGE">Baao Community College</option>
+                            <option value="BICOL COLLEGE">Bicol College</option>
+                            <option value="BICOL UNIVERSITY - MAIN">Bicol University - Main</option>
+                            <option value="BICOL UNIVERSITY POLANGUI">Bicol University Polangui</option>
+                            <option value="CAMARINES NORTE STATE COLLEGE">Camarines Norte State College</option>
+                            <option value="CAMARINES SUR POLYTECHNIC COLLEGES">Camarines Sur Polytechnic Colleges</option>
+                            <option value="CENTRAL BICOL STATE UNIVERSITY OF AGRICULTURE - SIPOCOT">Central Bicol State University Of Agriculture - Sipocot</option>
+                            <option value="COMPUTER COMMUNICATION DEVELOPMENT INSTITUTE, INC. LEGAZPI">Computer Communication Development Institute, Inc. Legazpi</option>
+                            <option value="COMPUTER COMMUNICATION DEVELOPMENT INSTITUTE, INC. SORSOGON">Computer Communication Development Institute, Inc. Sorsogon</option>
+                            <option value="COMPUTER SYSTEM INSTITUTE, INC.">Computer System Institute, Inc.</option>
+                            <option value="DEBESMSCAT">DEBESMSCAT</option>
+                            <option value="DIVINE WORD COLLEGE OF LEGAZPI">Divine Word College Of Legazpi</option>
+                            <option value="MABINI COLLEGES, INC.">Mabini Colleges, Inc.</option>
+                            <option value="PARTIDO STATE UNIVERSITY">Partido State University</option>
+                            <option value="SLTCFPDI">SLTCFPDI</option>
+                            <option value="SORSOGON STATE UNIVERSITY - BULAN CAMPUS">Sorsogon State University - Bulan Campus</option>
+                            <option value="THE LEWIS COLLEGE">The Lewis College</option>
+                            <option value="UNIVERSITY OF SANTO TOMAS-LEGAZPI">University Of Santo Tomas-Legazpi</option>
+                            <option value="others">Others</option>
+                        </select>
+                        
+                    </div>
                 </div>
             </div>
 
