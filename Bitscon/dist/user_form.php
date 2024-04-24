@@ -96,7 +96,7 @@
 
                                 <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                                     <h1 class="mb-8 text-center" style="font-family: Lexend;">WELCOME TO BITSCON 2024!</h1>
-                                    <img class="logo" src="../images/codite.png" alt="image" width="400" height="320">
+                                    <img class="logo" src="../images/codite.png" alt="image" width="400" height="340">
                                  
                                     <p style="text-align: justify; font-family: Lexend;">Join us for an electrifying event packed with
                                         excitement, unparalleled experiences, and a
