@@ -50,7 +50,7 @@
         <h3>Registered Attendee List</h3>
         <hr>
     </div>
-    
+
     <!-- Table -->
     <div class="container">
         <div class="row">
@@ -67,27 +67,8 @@
             </div>
 
             <div class="col-md-4">
-                <div class="form-group">
-                    <label for="schoolInput">Date:</label>
-                    <select class="form-control" id="dateInput" name="dateInput">
-                        <option value="SELECT_ALL">All</option>
-                        <!--This will be populated dynamically-->
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-4 text-right">
-                <br />
-                <!-- <a
-            href="#"
-            class="btn btn-primary"
-            role="button"
-            style="margin-top: 10px"
-            id="searchBtn"
-            name="searchBtn"
-          >
-            <i class="fas fa-search"></i> Search
-          </a> -->
+                <label for="excelUpload">Update Registered List:</label>
+                <input class="form-control form-control-sm" id="excelUpload" type="file" name="excelUpload" />
             </div>
         </div>
         <hr>
@@ -96,6 +77,7 @@
 
     <!-- Call out the retrieve attendee -->
     <?php include '../config/retrieve_registered.php'; ?>
+    <?php include '../config/excel_to_database.php'; ?>
     
     <div class="container container_menu">
         <div class="table-responsive-lg">
@@ -105,7 +87,7 @@
                         <th scope="col">Attendee ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Mobile Number</th>
-                        <th scope="col">School</th> 
+                        <th scope="col">School</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,153 +96,6 @@
             </table>
         </div>
     </div>
-
-
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-        crossorigin="anonymous"></script>
-    <script lang="javascript" src="	https://cdnjs.com/libraries/xlsx"></script>
-    <script>
-        async function populateDateOptions() {
-            try {
-                const response = await fetch("http://localhost:8090/api/admin/attendance/view/dates", {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const data = await response.json();
-                const dateSelect = document.getElementById('dateInput');
-                data.forEach(item => {
-                    const date = new Date(item.date);
-                    const year = date.getFullYear();
-                    const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based, so we add 1
-                    const day = String(date.getDate()).padStart(2, '0');
-                    const formattedDateValue = `${year}-${month}-${day}`;
-                    const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                    const option = document.createElement('option');
-                    option.value = formattedDateValue;
-                    option.textContent = formattedDate;
-
-                    // Append the option to the select element
-                    dateSelect.appendChild(option);
-                });
-
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        }
-
-        async function populateTable() {
-            try {
-                const response = await fetch("http://localhost:8090/api/admin/attendance/view/all", {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const data = await response.json();
-
-                const tableBody = document.querySelector('#attendanceTable tbody');
-
-                // Clear existing table rows
-                tableBody.innerHTML = '';
-
-                // Populate table with data
-                data.forEach(record => {
-                    record.dateId.forEach(date => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-            <td>${record.attendeeID}</td>
-            <td>${record.fname} ${record.lname}</td>
-            <td>+63 ${record.number}</td>
-            <td>${record.school}</td>
-            <td>${new Date(date.date).toLocaleDateString()}</td>
-          `;
-                        tableBody.appendChild(row);
-                    });
-                });
-
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        }
-
-        async function updateTable() {
-
-            const selectedDate = document.getElementById('dateInput').value;
-            const selectedSchool = document.getElementById('schoolInput').value;
-
-            const requestBody = {
-                "school": selectedSchool,
-                "date": selectedDate
-            };
-
-            try {
-                const response = await fetch("http://localhost:8090/api/admin/attendance/view/filtered", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(requestBody)
-                });
-                const data = await response.json();
-
-                const tableBody = document.querySelector('#attendanceTable tbody');
-
-                // Clear existing table rows
-                tableBody.innerHTML = '';
-
-                // Populate table with data
-                data.forEach(record => {
-                    record.dateId.forEach(date => {
-
-                        const tempDate = new Date(date.date);
-                        const year = tempDate.getFullYear();
-                        const month = String(tempDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based, so we add 1
-                        const day = String(tempDate.getDate()).padStart(2, '0');
-                        const formattedDateValue = `${year}-${month}-${day}`;
-                        if (formattedDateValue == selectedDate) {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-            <td>${record.attendeeID}</td>
-            <td>${record.fname} ${record.lname}</td>
-            <td>+63 ${record.number}</td>
-            <td>${record.school}</td>
-            <td>${new Date(date.date).toLocaleDateString()}</td>
-          `;
-                            tableBody.appendChild(row);
-                        } else if (selectedDate == "SELECT_ALL") {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-            <td>${record.attendeeID}</td>
-            <td>${record.fname} ${record.lname}</td>
-            <td>+63 ${record.number}</td>
-            <td>${record.school}</td>
-            <td>${new Date(date.date).toLocaleDateString()}</td>
-          `;
-                            tableBody.appendChild(row);
-                        }
-                    });
-                });
-
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        }
-
-        // Call the function to update table data when the filters change
-        $("#dateInput").change(updateTable);
-        $("#schoolInput").change(updateTable);
-
-        // Call the function to populate initial table data when the page loads
-        document.addEventListener('DOMContentLoaded', populateTable);
-        document.addEventListener('DOMContentLoaded', populateDateOptions);
-    </script> -->
 </body>
 
 </html>
