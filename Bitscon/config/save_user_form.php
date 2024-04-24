@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
                 echo "<script>alert('" . ($error ?? $success ?? "Unknown error") . "')</script>";
                 echo "<script>
                     setTimeout(function() {
-                        window.location.href = '../dist/user_form.php';
+                        window.location.href = '../user_form.php';
                     }, 1000); // Redirect after 1000 milliseconds (1 second)
                 </script>";
 
@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
                 echo "<script>alert('" . ($error ?? $success ?? "Unknown error") . "')</script>";
                 echo "<script>
                     setTimeout(function() {
-                        window.location.href = '../dist/user_form.php';
+                        window.location.href = '../user_form.php';
                     }, 1000); // Redirect after 1000 milliseconds (1 second)
                 </script>";
 
@@ -105,7 +105,7 @@ if (isset($_POST['submit'])) {
                 echo "<script>alert('" . ($error ?? $success ?? "Unknown error") . "')</script>";
                 echo "<script>
                     setTimeout(function() {
-                        window.location.href = '../dist/user_form.php';
+                        window.location.href = '../user_form.php';
                     }, 1000); // Redirect after 1000 milliseconds (1 second)
                 </script>";
 
@@ -120,7 +120,7 @@ if (isset($_POST['submit'])) {
         CloseCon($conn);
     }
 } else {
-    header("Location: ../dist/user_form.php?error");
+    header("Location: ../user_form.php?error");
     exit();
 }
 

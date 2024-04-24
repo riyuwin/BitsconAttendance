@@ -13,18 +13,25 @@
         integrity="sha512-3w3c2M1GyvwhTWeEdz6pHgmsavfVzca6xWoT/ZVnDXeQUq2KKZKM+d+4Uws/zlYFm3nILHRaEtbUJwXbpYpWhQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../../../css/style.css" />
 
-    <link rel="icon" type="image/png" href="../images/cnsclogo.png" />
+    <link rel="icon" type="image/png" href="../../../images/cnsclogo.png" />
     <title>Bitscon - Admin</title>
 </head>
 
 <body>
+    <?php
+    session_start();
+    if (!isset($_SESSION['loggedin'])) {
+        header('Location: admin_login.php');
+        exit;
+    }
+    ?>
     <!-- Header -->
     <div class="container-fluid header_tab">
         <div class="row">
             <div class="col-md-3 text-center">
-                <img src="../images/cnsclogo.png" width="90px" height="85px" />
+                <img src="../../../images/cnsclogo.png" width="90px" height="85px" />
             </div>
 
             <div class="col-md-6 text-center">
@@ -39,7 +46,7 @@
             </div>
 
             <div class="col-md-3 text-center">
-                <img src="../images/codite.png" width="110px" height="100px" />
+                <img src="../../../images/codite.png" width="110px" height="100px" />
             </div>
 
 
@@ -54,11 +61,9 @@
         </button> -->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" href="admin_registered_list.php">Registered List<span
+                <a class="nav-link active" href="registered.php">Registered List<span
                         class="sr-only">(current)</span></a>
-                <a class="nav-link" href="admin_attendance_list.php">Attendee List</a>
-
-                <p class="nav-link" id="logout">Log Out</p>
+                <a class="nav-link" href="attendance.php">Attendee List</a>
             </div>
         </div>
     </nav>
@@ -75,7 +80,7 @@
     </div>
 
     <!-- Call out the retrieve attendee -->
-    <?php include '../config/retrieve_registered.php'; ?>
+    <?php include '../../../config/retrieve_registered.php'; ?>
 
     <!-- Table -->
     <div class="container">
@@ -169,26 +174,6 @@
                 }
             });
         }
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            // Create a new XMLHttpRequest object
-            var xhr = new XMLHttpRequest();
-
-            // Define the request parameters (method, URL, async)
-            xhr.open('GET', '../config/checkSession.php', true);
-
-            // Define the callback function to handle the response
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr.responseText); // Log the response from the server
-                }
-            };
-
-            // Send the request
-            xhr.send();
-        });
     </script>
 
     <script>
@@ -297,7 +282,7 @@
             var xhr = new XMLHttpRequest();
 
             // Define the request parameters (method, URL, async)
-            xhr.open('GET', '../config/clear_database.php', true);
+            xhr.open('GET', '../../../config/clear_database.php', true);
 
             // Define the callback function to handle the response
             xhr.onreadystatechange = function () {
@@ -314,29 +299,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-
-    <script>
-        document.getElementById("logout").addEventListener("click", handleLogout);
-        function handleLogout() {
-            // Create a new XMLHttpRequest object
-            var xhr = new XMLHttpRequest();
-
-            // Define the request parameters (method, URL, async)
-            xhr.open('GET', '../config/logout.php', true);
-
-            // Define the callback function to handle the response
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr.responseText); // Log the response from the server
-                }
-            };
-
-            // Send the request
-            xhr.send();
-
-            window.location.href = 'admin_login.php';
-        }
-    </script>
 </body>
 
 </html>
