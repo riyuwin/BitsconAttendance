@@ -20,10 +20,6 @@
 </head>
 
 <body>
-
-
-
-
     <!-- Header -->
     <div class="container-fluid header_tab">
         <div class="row">
@@ -40,8 +36,8 @@
                         Camarines Norte State College<br />April 23-26, 2024
                     </p>
                 </span>
-            </div>           
-            
+            </div>
+
             <div class="col-md-3 text-center">
                 <img src="../images/codite.png" width="110px" height="100px" />
             </div>
@@ -58,17 +54,20 @@
         </button> -->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" href="admin_registered_list.php">Registered List<span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="admin_attendance_list.php">Attendee List</a> 
+                <a class="nav-link active" href="admin_registered_list.php">Registered List<span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-link" href="admin_attendance_list.php">Attendee List</a>
+
+                <p class="nav-link" id="logout">Log Out</p>
             </div>
         </div>
     </nav>
 
-    
+
 
     <br />
 
-    
+
 
     <div class="container text-center">
         <h3>Registered Attendee List</h3>
@@ -79,8 +78,8 @@
     <?php include '../config/retrieve_registered.php'; ?>
 
     <!-- Table -->
-    <div class="container"> 
-        <div class="row"> 
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
                 <h5>Upload File:</h5>
             </div>
@@ -88,15 +87,15 @@
 
             <div class="col-md-6">
                 <label for="excelUpload">Update Registered List:</label>
-                <input  id="excelUpload" type="file" name="excelUpload" /> 
+                <input id="excelUpload" type="file" name="excelUpload" />
             </div>
 
-            <div class="col-md-6"> 
+            <div class="col-md-6">
                 <button class="btn btn-primary" id="uploadButton">Upload File</button>
             </div>
         </div>
         <hr>
-    </div> 
+    </div>
     <!-- Table -->
     <div class="container">
         <div class="row">
@@ -105,15 +104,16 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="schoolInput">Search:</label> 
-                    <input type="text" id="searchInput" name="searchInput" class="form-control" pattern="[A-Za-z ]+" placeholder="Search" required />
+                    <label for="schoolInput">Search:</label>
+                    <input type="text" id="searchInput" name="searchInput" class="form-control" pattern="[A-Za-z ]+"
+                        placeholder="Search" required />
 
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="schoolInput">School:</label>            
+                    <label for="schoolInput">School:</label>
                     <select class="form-control" id="schoolInput" name="schoolInput" onchange="filterTable()">
                         <option value="SELECT_ALL">All</option>
                         <option value="Camarines Norte State College">Camarines Norte State College</option>
@@ -122,73 +122,16 @@
                     </select>
 
                 </div>
-            </div> 
-            
-            
             </div>
 
+
         </div>
+
+    </div>
     </div>
 
-    
+
     <br />
-
-
-    <!-- Modal -->
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Record</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h5>Edit Attendee</h5><br>
-
-                    <!-- Update the form action and method -->
-                    <form method="POST">
-                    
-                        <label for="otherSchool">ID:</label>
-                        <input type="number" id="attendeeID" name="attendeeID" class="form-control"  placeholder="Attendee ID" readonly/><br>      
-
-                        <label for="otherSchool">First Name:</label>
-                        <input type="text" id="firstname" name="firstname" class="form-control"
-                        pattern="^[A-Za-z]+(?:\s+[A-Za-z]+)?$" placeholder="First Name" required /><br>  
-                        
-                        <label for="otherSchool">Last Name:</label>
-                            <input type="text" id="lastname" name="lastname" class="form-control"
-                            pattern="^[A-Za-z]+(?:\s+[A-Za-z]+)?$" placeholder="Last Name" required /><br>
-
-                            
-                            <label for="otherSchool">School:</label>
-                            <input type="text" id="schoolInputModal" name="schoolInputModal" class="form-control" placeholder="School" required /><br>
-
-                            
-                            <label for="otherSchool">Phone Number:</label>
-                            <div class="form-outline mb-4">
-                                <div class="input-group">
-                                    <span class="input-group-text">+63</span>
-                                    <input type="text" id="Phonenum" name="Phonenum" class="form-control"
-                                        placeholder="Phone number" pattern="\d{10}"
-                                        title="Please enter a 10-digit phone number" required />
-                                </div>
-                            </div>
-                            
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <!-- Add name attribute to the button -->
-                            <button type="button" id="saveChanges" name="saveChanges" class="btn btn-primary">Save changes</button>
-                        </div>
-
-                </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container container_menu">
         <div class="table-responsive-lg">
@@ -211,7 +154,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
     <script>
         function filterTable() {
             var school = document.getElementById('schoolInput').value;
@@ -229,22 +171,41 @@
         }
     </script>
 
+    <script>
+        $(document).ready(function () {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Define the request parameters (method, URL, async)
+            xhr.open('GET', '../config/checkSession.php', true);
+
+            // Define the callback function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText); // Log the response from the server
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        });
+    </script>
 
     <script>
-    $(document).ready(function() {
-        // Function to handle live filtering based on search input
-        $('#searchInput').on('input', function() {
-            var searchText = $(this).val().toLowerCase(); // Get the search text and convert to lowercase for case-insensitive search
-            $('#attendanceTable tbody tr').each(function() {
-                var rowData = $(this).find('td').text().toLowerCase(); // Get the text content of all cells in this row
-                if (rowData.includes(searchText)) { // Check if the row data contains the search text
-                    $(this).show(); // Show the row if it matches the search
-                } else {
-                    $(this).hide(); // Hide the row if it doesn't match the search
-                }
+        $(document).ready(function () {
+            // Function to handle live filtering based on search input
+            $('#searchInput').on('input', function () {
+                var searchText = $(this).val().toLowerCase(); // Get the search text and convert to lowercase for case-insensitive search
+                $('#attendanceTable tbody tr').each(function () {
+                    var rowData = $(this).find('td').text().toLowerCase(); // Get the text content of all cells in this row
+                    if (rowData.includes(searchText)) { // Check if the row data contains the search text
+                        $(this).show(); // Show the row if it matches the search
+                    } else {
+                        $(this).hide(); // Hide the row if it doesn't match the search
+                    }
+                });
             });
         });
-    });
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
@@ -350,9 +311,32 @@
         }
     </script>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById("logout").addEventListener("click", handleLogout);
+        function handleLogout() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Define the request parameters (method, URL, async)
+            xhr.open('GET', '../config/logout.php', true);
+
+            // Define the callback function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText); // Log the response from the server
+                }
+            };
+
+            // Send the request
+            xhr.send();
+
+            window.location.href = 'admin_login.php';
+        }
+    </script>
 </body>
 
 </html>
