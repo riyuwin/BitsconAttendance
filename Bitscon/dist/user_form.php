@@ -55,14 +55,24 @@
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <select class="form-control" id="schoolInput" name="schoolInput" required>
+                                                <select class="form-control" id="schoolInput" name="schoolInput" onchange="toggleOtherInput()"required>
                                                     <option value="">--- Select School Name ---</option>
                                                     <option value="Camarines Norte State College">Camarines Norte State College</option>
                                                     <option value="Mabini Colleges">Mabini Colleges</option>
                                                     <option value="Ateneo De Naga">Ateneo De Naga</option>
+                                                    <option value="others">Others</option>
                                                 </select>
                                             </div>
 
+                                            <div class="form-outline mb-4">
+                                            <div id="otherSchoolInput" style="display: none;">
+                                            <label for="otherSchool">Please specify:</label>
+                                            <input type="text" class="form-control" id="otherSchool" name="otherSchool">
+                                            </div>
+
+                                            </div>
+                                            
+  
                                             <div class="form-outline mb-4">
                                                 <div class="input-group">
                                                     <span class="input-group-text">+63</span>
@@ -102,6 +112,22 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+    function toggleOtherInput() {
+        var selectElement = document.getElementById("schoolInput");
+        var otherInput = document.getElementById("otherSchoolInput");
+        var otherSchoolInput = document.getElementById("otherSchool");
+
+        if (selectElement.value === "others") {
+            otherInput.style.display = "block";
+            otherSchoolInput.required = true;
+        } else {
+            otherInput.style.display = "none";
+            otherSchoolInput.required = false;
+        }
+    }
+    </script>
     
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
