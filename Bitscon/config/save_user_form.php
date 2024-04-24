@@ -6,7 +6,8 @@ $conn = OpenCon();
 
 if(isset($_POST['submit'])){
     if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['schoolInput']) && !empty($_POST['Phonenum'])) {
-
+        
+        
         $fname = trim($_POST['firstname']);
         $lname = trim($_POST['lastname']);
         $school = trim($_POST['schoolInput']);

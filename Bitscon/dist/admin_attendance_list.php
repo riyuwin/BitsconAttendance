@@ -1,3 +1,9 @@
+<?php
+
+  session_start();  
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,11 +27,17 @@
 
 <body>
     <?php
-    session_start();
+    /* session_start();
     if (!isset($_SESSION['loggedin'])) {
         header('Location: admin_login.php');
         exit;
-    }
+    } */
+
+        if(!isset($_SESSION['username'])) {
+            header('Location: admin_login.php');
+            exit;
+        }
+        
     ?>
     <!-- Header -->
     <div class="container-fluid header_tab">
@@ -61,6 +73,17 @@
                 <a class="nav-link" href="admin_registered_list.php">Registered List<span
                         class="sr-only">(current)</span></a>
                 <a class="nav-link active" href="admin_attendance_list.php">Attendee List</a>
+                
+                <?php if(isset($_SESSION['username'])) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../config/logout.php">Logout</a>
+                    </li> 
+                <?php } else { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_login.php">Login</a>
+                    </li>
+                <?php } ?>
+
             </div>
         </div>
     </nav>

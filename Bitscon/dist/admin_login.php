@@ -38,10 +38,10 @@
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4">Admin Login</h1>
-                            <form>
+                            <form action="../config/login.php" method="POST">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted">Username</label>
-                                    <input id="username" type="text" class="form-control" name="Username" value=""
+                                    <input id="username" type="text" class="form-control" name="username" value=""
                                         required>
                                 </div>
                                 <div id="error-message-username" class="text-danger"></div>
@@ -59,7 +59,7 @@
 
                                 <br>
                                 <div class="d-flex align-items-center">
-                                    <button onclick="signinAttempt(event)" class="btn btn-outline-secondary ms-auto">
+                                    <button type="submit" name="submit" class="btn btn-outline-secondary ms-auto">
                                         Login
                                     </button>
                                 </div>

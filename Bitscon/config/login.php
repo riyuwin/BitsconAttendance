@@ -1,5 +1,5 @@
 <?php
-include 'db_connection.php';
+/* include 'db_connection.php';
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -26,5 +26,42 @@ if ($ADMIN_USERNAME === $username) {
     }
 } else {
     echo 'USERNAME_NOT_FOUND';
+} */
+?>
+
+
+<?php
+include 'db_connection.php';
+
+session_start(); // Start session at the beginning
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$conn = OpenCon();
+
+if(isset($_POST['submit'])){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if ($email == $_ENV["ADMIN_USERNAME"] && $password == $_ENV["ADMIN_PASSWORD"]){
+        $_SESSION['username'] = $email; 
+        $_SESSION['password'] = $password; 
+        header("location:../dist/admin_registered_list.php");
+        exit(); // Exit after redirect
+
+    } else { 
+        // If user is not found
+        $_SESSION['error'] = "User not found";
+    }
+
+    // Redirect back to the login form
+    header("location:../dist/admin_login.php");
+    exit();
+ 
 }
 ?>
