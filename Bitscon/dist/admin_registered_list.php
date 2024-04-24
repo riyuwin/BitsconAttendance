@@ -51,6 +51,9 @@
         <hr>
     </div>
 
+    <!-- Call out the retrieve attendee -->
+    <?php include '../config/retrieve_registered.php'; ?>
+
     <!-- Table -->
     <div class="container">
         <div class="row">
@@ -69,15 +72,15 @@
             <div class="col-md-4">
                 <label for="excelUpload">Update Registered List:</label>
                 <input class="form-control form-control-sm" id="excelUpload" type="file" name="excelUpload" />
+                <input class="" id="uploadFile" type="button" onclick="UploadFile()" />
                 <!--CREATE AN UPLOAD BUTTON THAT CALLS THE FUNCTION NAMED UploadFile() FROM PHP-->
+
             </div>
         </div>
         <hr>
     </div>
     <br />
 
-    <!-- Call out the retrieve attendee -->
-    <?php include '../config/retrieve_registered.php'; ?>
 
     <div class="container container_menu">
         <div class="table-responsive-lg">

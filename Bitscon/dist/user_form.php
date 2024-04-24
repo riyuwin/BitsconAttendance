@@ -42,7 +42,7 @@
                                                 FORM</b></h4>
                                     </div>
 
-                                    <form id="attendanceForm">
+                                    <form action="../config/save_user_form.php" method="POST" id="attendanceForm">
                                         <p>Please enter details for attendance:</p>
 
                                         <div class="form-outline mb-4">
@@ -75,8 +75,7 @@
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="button-19" type="button"
-                                                onclick="validateForm()">Submit</button>
+                                            <button class="button-19" type="submit" name="submit">Submit</button>
                                             <div id="error-message" class="text-danger mt-2"></div>
                                             <div id="confirmation-message" class="text-green mt-2"></div>
                                         </div>
