@@ -5,6 +5,9 @@ include 'db_connection.php';
 $conn = OpenCon();
 
 if(isset($_POST['submit'])){
+
+    echo"hey";
+
     if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['schoolInput']) && !empty($_POST['Phonenum'])) {
 
         $fname = trim($_POST['firstname']);

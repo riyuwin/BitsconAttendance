@@ -41,46 +41,44 @@
                                         <h4 class="gradient-text mt-1 mb-5 pb-1" style="font-family: Lexend;"><b>BITSCON 2024 ATTENDANCE TRACKING
                                                 FORM</b></h4>
                                     </div>
+                                        <form action="../config/save_user_form.php" method="POST" id="attendanceForm">
+                                            <p>Please enter details for attendance:</p>
 
-                                    <form id="attendanceForm">
-                                        <p>Please enter details for attendance:</p>
-
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="firstname" name="firstname" class="form-control"
-                                                pattern="[A-Za-z]+" placeholder="First Name" required />
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <input type="text" id="lastname" name="lastname" class="form-control"
-                                                pattern="[A-Za-z]+" placeholder="Last Name" required />
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <select class="form-control" id="schoolInput" name="schoolInput" required>
-                                                <option value="">--- Select School Name ---</option>
-                                                <option value="Camarines Norte State College">Camarines Norte State College</option>
-                                                <option value="Mabini Colleges">Mabini Colleges</option>
-                                                <option value="Ateneo De Naga">Ateneo De Naga</option>
-                                            </select>
-                                        </div>
-
-
-                                        <div class="form-outline mb-4">
-                                            <div class="input-group">
-                                                <span class="input-group-text">+63</span>
-                                                <input type="text" id="Phonenum" name="Phonenum" class="form-control"
-                                                    placeholder="Phone number" pattern="\d{10}"
-                                                    title="Please enter a 10-digit phone number" required />
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="firstname" name="firstname" class="form-control"
+                                                    pattern="^[A-Za-z]+(?:\s+[A-Za-z]+)?$" placeholder="First Name" required />
                                             </div>
-                                        </div>
 
-                                        <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="button-19" type="button"
-                                                onclick="validateForm()">Submit</button>
-                                            <div id="error-message" class="text-danger mt-2"></div>
-                                            <div id="confirmation-message" class="text-green mt-2"></div>
-                                        </div>
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="lastname" name="lastname" class="form-control"
+                                                    pattern="[A-Za-z ]+" placeholder="Last Name" required />
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <select class="form-control" id="schoolInput" name="schoolInput" required>
+                                                    <option value="">--- Select School Name ---</option>
+                                                    <option value="Camarines Norte State College">Camarines Norte State College</option>
+                                                    <option value="Mabini Colleges">Mabini Colleges</option>
+                                                    <option value="Ateneo De Naga">Ateneo De Naga</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">+63</span>
+                                                    <input type="text" id="Phonenum" name="Phonenum" class="form-control"
+                                                        placeholder="Phone number" pattern="\d{10}"
+                                                        title="Please enter a 10-digit phone number" required />
+                                                </div>
+                                            </div>
+
+                                            <div class="text-center pt-1 mb-5 pb-1">
+                                                <button class="button-19" type="submit" name="submit">Submit</button>
+                                                <div id="error-message" class="text-danger mt-2"></div>
+                                                <div id="confirmation-message" class="text-green mt-2"></div>
+                                            </div>
                                     </form>
+
 
                                 </div>
                             </div>
