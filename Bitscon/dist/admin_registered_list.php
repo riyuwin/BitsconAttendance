@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-3w3c2M1GyvwhTWeEdz6pHgmsavfVzca6xWoT/ZVnDXeQUq2KKZKM+d+4Uws/zlYFm3nILHRaEtbUJwXbpYpWhQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css" />
 
     <link rel="icon" type="image/png" href="../images/cnsclogo.png" />
@@ -89,6 +89,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Mobile Number</th>
                         <th scope="col">School</th>
+                        <th scope="col">Edit</th>
                     </tr>
                 </thead>
                 <tbody>
