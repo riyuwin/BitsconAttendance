@@ -19,6 +19,7 @@ if (mysqli_num_rows($result) > 0) {
         $fname = $row['fname'];
         $lname = $row['lname'];
         $mobileNumber = $row['number'] !== "null" ? "+63" . $row['number'] : "null";
+        $mobileNumber = $row['number'] !== "+63" ? "+63" . $row['number'] : "null";
         $school = $row['school'];
 
         // Append the table row with the data to the $tableRows variable

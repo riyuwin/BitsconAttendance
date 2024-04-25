@@ -23,14 +23,14 @@
     <?php
     session_start();
 
-    if(!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['username'])) {
         //header('Location: admin_login.php');
         header("location: ../login.php");
         exit;
     }
     ?>
 
-    
+
     <!-- Header -->
     <div class="container-fluid header_tab">
         <div class="row">
@@ -61,14 +61,13 @@
     <nav class="navbar navbar-expand-lg navbar-light custom-bg-navbar">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                
-                <a class="nav-link active" href="#">Registered List<span
-                        class="sr-only">(current)</span></a>
+
+                <a class="nav-link active" href="#">Registered List<span class="sr-only">(current)</span></a>
 
                 <a class="nav-link" href="../attendance">Attendee List</a>
 
 
-                <?php if(isset($_SESSION['username'])) { ?>
+                <?php if (isset($_SESSION['username'])) { ?>
                     <a class="nav-link" href="../../../config/logout.php">Logout</a>
                 <?php } ?>
 
@@ -128,8 +127,8 @@
                 <div class="form-group">
                     <label for="schoolInput">School:</label>
                     <div class="form-outline mb-4">
-                        <select class="form-control" id="schoolInput" name="schoolInput" onchange="toggleOtherInput()"required>
-                            <option value="">--- Select School Name ---</option>
+                        <select class="form-control" id="schoolInput" name="schoolInput" required>
+                            <option value="">ALL SCHOOLS</option>
                             <option value="ACLC COLLEGE SORSOGON">ACLC College Sorsogon</option>
                             <option value="ACLC COLLEGE OF IRIGA, INC.">ACLC College Of Iriga, Inc.</option>
                             <option value="AEMILIANUM COLLEGE INC.">Aemilianum College Inc.</option>
@@ -139,22 +138,27 @@
                             <option value="BICOL UNIVERSITY - MAIN">Bicol University - Main</option>
                             <option value="BICOL UNIVERSITY POLANGUI">Bicol University Polangui</option>
                             <option value="CAMARINES NORTE STATE COLLEGE">Camarines Norte State College</option>
-                            <option value="CAMARINES SUR POLYTECHNIC COLLEGES">Camarines Sur Polytechnic Colleges</option>
-                            <option value="CENTRAL BICOL STATE UNIVERSITY OF AGRICULTURE - SIPOCOT">Central Bicol State University Of Agriculture - Sipocot</option>
-                            <option value="COMPUTER COMMUNICATION DEVELOPMENT INSTITUTE, INC. LEGAZPI">Computer Communication Development Institute, Inc. Legazpi</option>
-                            <option value="COMPUTER COMMUNICATION DEVELOPMENT INSTITUTE, INC. SORSOGON">Computer Communication Development Institute, Inc. Sorsogon</option>
+                            <option value="CAMARINES SUR POLYTECHNIC COLLEGES">Camarines Sur Polytechnic Colleges
+                            </option>
+                            <option value="CENTRAL BICOL STATE UNIVERSITY OF AGRICULTURE - SIPOCOT">Central Bicol State
+                                University Of Agriculture - Sipocot</option>
+                            <option value="COMPUTER COMMUNICATION DEVELOPMENT INSTITUTE, INC. LEGAZPI">Computer
+                                Communication Development Institute, Inc. Legazpi</option>
+                            <option value="COMPUTER COMMUNICATION DEVELOPMENT INSTITUTE, INC. SORSOGON">Computer
+                                Communication Development Institute, Inc. Sorsogon</option>
                             <option value="COMPUTER SYSTEM INSTITUTE, INC.">Computer System Institute, Inc.</option>
                             <option value="DEBESMSCAT">DEBESMSCAT</option>
                             <option value="DIVINE WORD COLLEGE OF LEGAZPI">Divine Word College Of Legazpi</option>
                             <option value="MABINI COLLEGES, INC.">Mabini Colleges, Inc.</option>
                             <option value="PARTIDO STATE UNIVERSITY">Partido State University</option>
                             <option value="SLTCFPDI">SLTCFPDI</option>
-                            <option value="SORSOGON STATE UNIVERSITY - BULAN CAMPUS">Sorsogon State University - Bulan Campus</option>
+                            <option value="SORSOGON STATE UNIVERSITY - BULAN CAMPUS">Sorsogon State University - Bulan
+                                Campus</option>
                             <option value="THE LEWIS COLLEGE">The Lewis College</option>
                             <option value="UNIVERSITY OF SANTO TOMAS-LEGAZPI">University Of Santo Tomas-Legazpi</option>
                             <option value="others">Others</option>
                         </select>
-                        
+
                     </div>
                 </div>
             </div>
@@ -180,8 +184,7 @@
                         <th scope="col">Edit</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php echo $tableRows; ?>
+                <tbody id="attendeeTableBody">
                 </tbody>
             </table>
         </div>
@@ -190,37 +193,45 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        function filterTable() {
-            var school = document.getElementById('schoolInput').value;
-            var rows = document.querySelectorAll('#attendanceTable tbody tr');
-
-            rows.forEach(row => {
-                var rowSchool = row.cells[3].innerText; // Assuming the school name is in the 4th cell 
-
-                if (school === 'SELECT_ALL' || rowSchool === school) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            // Function to handle live filtering based on search input
-            $('#searchInput').on('input', function () {
-                var searchText = $(this).val().toLowerCase(); // Get the search text and convert to lowercase for case-insensitive search
-                $('#attendanceTable tbody tr').each(function () {
-                    var rowData = $(this).find('td').text().toLowerCase(); // Get the text content of all cells in this row
-                    if (rowData.includes(searchText)) { // Check if the row data contains the search text
-                        $(this).show(); // Show the row if it matches the search
-                    } else {
-                        $(this).hide(); // Hide the row if it doesn't match the search
-                    }
-                });
-            });
+        document.getElementById("schoolInput").addEventListener("change", getAttendeeData);
+        document.getElementById("searchInput").addEventListener("input", getAttendeeData);
+        document.addEventListener("DOMContentLoaded", function () {
+            getAttendeeData();
         });
+        function getAttendeeData() {
+            const selectElement = document.getElementById("schoolInput");
+            const school = selectElement.options[selectElement.selectedIndex].value;
+            const searchText = document.getElementById("searchInput").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '../../../config/filter_registration.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    populateTable(data);
+                }
+            };
+            var params = 'searchText=' + encodeURIComponent(searchText) +
+                '&school=' + encodeURIComponent(school);
+            xhr.send(params);
+        }
+
+        function populateTable(data) {
+            var tableBody = document.getElementById("attendeeTableBody");
+            var tableRows = ""; // Build table rows in a string
+            data.forEach(function (row) {
+                tableRows += "<tr>";
+                tableRows += "<td>" + row.attendeeId + "</td>";
+                tableRows += "<td>" + row.name + "</td>";
+                tableRows += "<td>" + row.mobileNumber + "</td>";
+                tableRows += "<td>" + row.school + "</td>";
+                tableRows += "<td><a href='update?id=" + row.attendeeId + "&fname=" + row.fname + "&lname=" + row.lname + "&mobile=" + row.mobileNumber + "&school=" + row.school + "' class='btn btn-primary btn-sm'>Edit</a></td>";
+                tableRows += "</tr>";
+            });
+            // Update the innerHTML once
+            tableBody.innerHTML = tableRows;
+        }
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
@@ -326,9 +337,15 @@
         }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
