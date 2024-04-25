@@ -285,7 +285,7 @@
             var xhr = new XMLHttpRequest();
 
             // Define the request parameters (method, URL, async)
-            xhr.open('POST', '../config/upload_excel.php', true);
+            xhr.open('POST', '../../../config/upload_excel.php', true);
 
             // Set the request header if necessary (e.g., content-type)
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

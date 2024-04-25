@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             echo "<script>alert('Data updated successfully')</script>";
             echo "<script>
                 setTimeout(function() {
-                    window.location.href = '../dist/admin_registered_list.php';
+                    window.location.href = '../bitscon2024_webApp123/admin/registered/';
                 }, 1000); // Redirect after 1000 milliseconds (1 second)
             </script>"; 
             
